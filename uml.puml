@@ -1,0 +1,340 @@
+@startuml
+class logic.component.Star {
+- String URL
+- int index
+- boolean collected
++ <<Create>> Star(int,int,int)
++ void hit(Human)
++ String toString()
++ boolean isCollected()
++ void setCollected(Boolean)
++ int getIndex()
++ void setIndex(int)
++ String getURL()
++ void setURL(String)
+}
+class scene.component.GameGrid {
+- int GAME_GRID_X
+- ArrayList<GameCell> boardState
++ <<Create>> GameGrid()
++ void drawBoard()
++ void drawCell(int,int,String)
++ ArrayList<GameCell> getBoardState()
+}
+abstract class logic.component.Item {
+- int x
+- int y
++ <<Create>> Item(int,int)
++ {abstract}void hit(Human)
++ {abstract}String toString()
++ int getX()
++ int getY()
++ void setX(int)
++ void setY(int)
+}
+class scene.component.SecondaryButton {
+- int BUTTON_WIDTH
+- int BUTTON_HEIGHT
+- int GAP
+- String BUTTON_PRESSED_PATH
+- String BUTTON_RELEASED_PATH
+- String BUTTON_PRESSED_STYLE
+- String BUTTON_RELEASED_STYLE
+- int FONT_SIZE
++ <<Create>> SecondaryButton(String)
++ void initializeEventHandler()
+}
+class logic.game.GameLogic {
+- {static} GameLogic instance
+- Level level
+- int levelNumber
+- GameGrid gameGrid
+- ArrowList arrowList
+- Thread thread
+- <<Create>> GameLogic()
++ {static} GameLogic getInstance()
++ void simulate()
++ void placeArrow(int,int)
++ void stop()
++ void reset()
++ Level getLevel()
++ int getLevelNumber()
++ void setLevel(int)
++ GameGrid getGameGrid()
++ void setGameGrid(GameGrid)
++ ArrowList getArrowList()
++ void setArrowList(ArrowList)
+}
+class application.Main {
++ {static} Stage primaryStage
++ void start(Stage)
+- void initializeBackgroundMusic()
++ {static} void setScene(Parent)
++ {static} void main(String[])
+}
+class scene.TutorialScene {
++ <<Create>> TutorialScene()
+}
+class logic.component.Source {
+- FacingDirection facingDirection
+- int index
++ <<Create>> Source(int,int,FacingDirection,int)
++ void hit(Human)
++ String toString()
++ FacingDirection getFacingDirection()
++ void setFacingDirection(FacingDirection)
++ int getIndex()
++ void setIndex(int)
+}
+class util.FileToLevel {
++ {static} Level convert(File)
+}
+class logic.component.Wall {
+- String URL
++ <<Create>> Wall(int,int)
++ void hit(Human)
++ String toString()
++ String getURL()
++ void setURL(String)
+}
+class logic.level.Level {
+- ArrayList<Item> items
+- ArrayList<Arrow> placeableArrow
+- ArrayList<Human> humans
++ <<Create>> Level()
++ void addItem(Item)
++ void addPlaceableArrow(Arrow)
++ void addHuman(Human)
++ ArrayList<Item> getItems()
++ ArrayList<Arrow> getPlaceableArrow()
++ ArrayList<Human> getHumans()
+}
+class scene.LevelSelectionScene {
+- int TITLE_WIDTH
+- int TITLE_HEIGHT
+- int TITLE_Y
+- int FONT_SIZE
+- int BUTTON_SIZE
+- int GAP
+- int LEVEL_COL
+- int LEVEL_ROW
++ <<Create>> LevelSelectionScene()
++ Label getTitle()
++ GridPane getLevelGrid()
+}
+class scene.component.PrimaryButton {
+- int BUTTON_WIDTH
+- int BUTTON_HEIGHT
+- int GAP
+- String BUTTON_PRESSED_PATH
+- String BUTTON_RELEASED_PATH
+- String BUTTON_PRESSED_STYLE
+- String BUTTON_RELEASED_STYLE
+- int FONT_SIZE
++ <<Create>> PrimaryButton(String)
++ void initializeEventHandler()
+}
+class scene.component.GameCell {
+- int xPosition
+- int yPosition
++ <<Create>> GameCell(int,int)
+- void handleClick(MouseEvent)
++ void draw(String)
++ void setxPosition(int)
++ void setyPosition(int)
+}
+interface logic.usage.Directable {
+~ void setFacingDirection(FacingDirection)
+~ FacingDirection getFacingDirection()
+}
+interface logic.usage.Renderable {
+~ void setURL(String)
+~ String getURL()
+}
+class util.Constant {
++ {static} int GAME_WIDTH
++ {static} int GAME_HEIGHT
++ {static} int LEVEL_COUNT
++ {static} int BOARD_WIDTH
++ {static} int BOARD_HEIGHT
++ {static} int CELL_SIZE
++ {static} int HUMAN_COUNT
++ {static} String getBackground(int)
+}
+class scene.component.ArrowList {
+- int ARROW_LIST_HEIGHT
++ <<Create>> ArrowList()
++ void drawList()
+}
+class scene.GameScene {
+- int PADDING
++ <<Create>> GameScene(int)
+}
+class scene.EndGameScene {
+- String TITLE_PATH
+- int TITLE_WIDTH
+- int TITLE_HEIGHT
+- int TITLE_Y
+- int NEXT_BUTTON_Y
+- int REPLAY_BUTTON_Y
+- int BACK_BUTTON_Y
++ <<Create>> EndGameScene(int)
++ ImageView getTitle()
+}
+enum logic.usage.FacingDirection {
++  UP
++  DOWN
++  LEFT
++  RIGHT
++  NONE
++ {static} FacingDirection fromString(String)
++ FacingDirection opposite()
++ int getXDir()
++ int getYDir()
++ String toString()
+}
+class logic.component.Arrow {
+- FacingDirection facingDirection
+- String URL
++ <<Create>> Arrow(int,int,FacingDirection)
++ void hit(Human)
++ String toString()
++ FacingDirection getFacingDirection()
++ void setFacingDirection(FacingDirection)
++ String getURL()
++ void setURL(String)
+}
+class scene.component.Header {
+- int HEADER_HEIGHT
+- int BACK_WIDTH
+- int BACK_HEIGHT
+- int GAP
+- String BACK_BUTTON_PATH
+- String BACK_BUTTON_STYLE
+- String HEADER_STYLE
+- int FONT_SIZE
+- int LABEL_WIDTH
++ <<Create>> Header(String)
+- Button getBackButton()
+- Label getMainMenuLabel()
+- Label getSceneLabel(String)
+}
+enum logic.level.LevelState {
++  SOLVED
++  ATTEMPTED
++  NOT_ATTEMPTED
++ String getPressedStyle()
++ String getReleasedStyle()
+- String format()
+}
+class logic.component.Human {
+- String URL
+- int x
+- int y
+- int index
+- FacingDirection facingDirection
+- boolean isAwake
++ <<Create>> Human(int)
++ void move()
++ int getX()
++ void setX(int)
++ int getY()
++ void setY(int)
++ FacingDirection getFacingDirection()
++ void setFacingDirection(FacingDirection)
++ boolean getAwake()
++ void setAwake(boolean)
++ int getIndex()
++ void setIndex(int)
++ String getURL()
++ void setURL(String)
+}
+class logic.level.LevelSelection {
+- {static} LevelSelection instance
+- ArrayList<LevelSelectionButton> levelSelectionButtons
+- <<Create>> LevelSelection()
++ {static} LevelSelection getInstance()
++ ArrayList<LevelSelectionButton> getLevelSelectionButtons()
+}
+class scene.MainMenuScene {
+- String TITLE_PATH
+- int TITLE_WIDTH
+- int TITLE_HEIGHT
+- int TITLE_Y
+- int START_BUTTON_Y
+- int TUTORIAL_BUTTON_Y
+- int EXIT_BUTTON_Y
++ <<Create>> MainMenuScene()
++ ImageView getTitle()
+}
+class scene.component.GameController {
+- int CONTROLLER_HEIGHT
+- int PADDING
+- int PLAY_BUTTON_WIDTH
+- int PLAY_BUTTON_HEIGHT
+- String PLAY_BUTTON_PATH
+- String PLAY_BUTTON_STYLE
+- int RESET_BUTTON_WIDTH
+- int RESET_BUTTON_HEIGHT
+- String RESET_BUTTON_PATH
+- String RESET_BUTTON_STYLE
+- String CONTROLLER_STYLE
+- int FONT_SIZE
+- int LABEL_SIZE
++ <<Create>> GameController()
++ Button getSimulateButton()
++ Label getSimulateLabel()
++ Button getResetButton()
++ Label getResetLabel()
+}
+class logic.component.Bed {
+- String URL
+- int index
++ <<Create>> Bed(int,int,int)
++ void hit(Human)
++ String toString()
++ int getIndex()
++ void setIndex(int)
++ String getURL()
++ void setURL(String)
+}
+class scene.component.LevelSelectionButton {
+- LevelState levelState
+- int BUTTON_SIZE
+- int GAP
+- int FONT_SIZE
++ <<Create>> LevelSelectionButton(int)
++ void changeState(LevelState)
+- void initializeEventHandler(int)
++ void initialize()
+}
+
+
+logic.usage.Renderable <|.. logic.component.Star
+logic.component.Item <|-- logic.component.Star
+javafx.scene.layout.GridPane <|-- scene.component.GameGrid
+javafx.scene.control.Button <|-- scene.component.SecondaryButton
+javafx.application.Application <|-- application.Main
+javafx.scene.layout.AnchorPane <|-- scene.TutorialScene
+logic.usage.Directable <|.. logic.component.Source
+logic.component.Item <|-- logic.component.Source
+logic.usage.Renderable <|.. logic.component.Wall
+logic.component.Item <|-- logic.component.Wall
+javafx.scene.layout.AnchorPane <|-- scene.LevelSelectionScene
+javafx.scene.control.Button <|-- scene.component.PrimaryButton
+javafx.scene.layout.StackPane <|-- scene.component.GameCell
+javafx.scene.layout.VBox <|-- scene.component.ArrowList
+javafx.scene.layout.AnchorPane <|-- scene.GameScene
+javafx.scene.layout.AnchorPane <|-- scene.EndGameScene
+logic.usage.Directable <|.. logic.component.Arrow
+logic.usage.Renderable <|.. logic.component.Arrow
+logic.component.Item <|-- logic.component.Arrow
+javafx.scene.layout.AnchorPane <|-- scene.component.Header
+logic.usage.Directable <|.. logic.component.Human
+logic.usage.Renderable <|.. logic.component.Human
+javafx.scene.layout.AnchorPane <|-- scene.MainMenuScene
+javafx.scene.layout.AnchorPane <|-- scene.component.GameController
+logic.usage.Renderable <|.. logic.component.Bed
+logic.component.Item <|-- logic.component.Bed
+javafx.scene.control.Button <|-- scene.component.LevelSelectionButton
+@enduml
