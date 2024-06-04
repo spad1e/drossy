@@ -15,6 +15,6 @@ To execute jar file run the following command:
 
 Contributors:
 
-Pasin P. [@spad1e] (<https://github.com/spad1e>)
+Pasin P. [@spad1e](<https://github.com/spad1e>)
 
-Teetat T. [@ttamx] (<https://github.com/ttamx>)
+Teetat T. [@ttamx](<https://github.com/ttamx>)
