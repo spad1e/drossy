@@ -12,9 +12,9 @@ JDK >= 20.0.2
 
 Library: JavaFX
 
-Virtual Machine Options
-
 ### running commands
+
+Set your Virtual Machine Options in IntelliJ to the following
 
 ```
 --module-path [path to javafx sdk's lib folder] --add-modules javafx.controls,javafx.fxml,javafx.graphics,javafx.media
