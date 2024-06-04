@@ -2,7 +2,9 @@
 
 This repository is the final project for 2110215 Programming Methodology course at Chulalongkorn University.
 
-## setup
+## Getting Started
+
+### requirements
 
 IDE: IntelliJ Community Edition
 
@@ -12,12 +14,16 @@ Library: JavaFX
 
 Virtual Machine Options
 
-```--module-path [path to javafx sdk's lib folder] --add-modules javafx.controls,javafx.fxml,javafx.graphics,javafx.media
+### running commands
+
+```
+--module-path [path to javafx sdk's lib folder] --add-modules javafx.controls,javafx.fxml,javafx.graphics,javafx.media
 ```
 
 To execute jar file run the following command:
 
-```java -jar [vm options] [path to .jar file]
+```
+java -jar [vm options] [path to .jar file]
 ```
 
 Contributors:
